@@ -102,7 +102,7 @@ export default function ProposalArt() {
                         ))}
                     </ul>
 
-                    <div className="section-image w-full aspect-[5/5] relative rounded-lg overflow-hidden shadow-2xl">
+                    <div className="section-image w-full aspect-[5/5] relative rounded-lg overflow-hidden shadow-2xl mt-7 lg:mt-0">
                         <Image src="/images/zareczyny-fst.jpg" alt="Elegancko udekorowany stolik zaręczynowy" layout="fill" objectFit="cover" />
                     </div>
                 </div>
