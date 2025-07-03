@@ -27,10 +27,10 @@ export default function HeroZareczyny() {
                 </p>
                 <div className="hero-el flex flex-wrap gap-4 justify-center">
                     <Link
-                        href="/slub-marzen#uslugi"
+                        href="/zareczyny-marzen#realizacje"
                         className="hero-btn bg-brand-500 hover:bg-white hover:text-brand-500 px-8 py-3 rounded-md font-semibold transition-colors duration-300 text-center"
                     >
-                        Poznaj naszą ofertę
+                        Zobacz nasze Realizacje
                     </Link>
 
                     <div className="bg-brand p-1 rounded-lg shadow">

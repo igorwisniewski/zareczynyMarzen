@@ -87,7 +87,7 @@ export default function WeddingChoice() {
     return (
         <main
             ref={containerRef}
-            className="relative flex flex-col md:flex-row w-screen min-h-screen md:h-screen max-h-screen bg-black font-serif overflow-hidden"
+            className="relative flex flex-col md:flex-row w-screen min-h-screen md:h-screen max-h-[90vh] lg:max-h-screen bg-black font-serif overflow-hidden"
         >
 
             {/* --- Komponenty w kolejności dla widoku mobilnego --- */}

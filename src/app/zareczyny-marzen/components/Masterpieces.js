@@ -94,7 +94,7 @@ export default function Masterpieces() {
     const imagesToShow = allImages.slice(0, visibleCount);
 
     return (
-        <section ref={container} className="py-16 sm:py-24 bg-white">
+        <section ref={container} className="py-16 sm:py-24 bg-white" id="realizacje">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                 <h2 className="font-serif text-4xl font-bold mb-4 text-brand-900">Galeria Inspiracji</h2>
                 <p className="max-w-2xl mx-auto text-gray-600 mb-12">

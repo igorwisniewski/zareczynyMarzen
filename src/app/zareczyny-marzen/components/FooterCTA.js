@@ -5,13 +5,12 @@ import { useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
-import { PhoneIcon, MapPinIcon, EnvelopeIcon } from '@heroicons/react/24/outline';
+import { PhoneIcon, EnvelopeIcon } from '@heroicons/react/24/outline';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const details = [
-    { icon: <PhoneIcon className="w-8 h-8 text-brand-600"/>, title: "Telefon", content: "+48 123 456 789" },
-    { icon: <MapPinIcon className="w-8 h-8 text-brand-600"/>, title: "Adres", content: "ul. Marzeń 1, Warszawa" },
+    { icon: <PhoneIcon className="w-8 h-8 text-brand-600"/>, title: "Telefon", content: "+48 507 792 161" },
     { icon: <EnvelopeIcon className="w-8 h-8 text-brand-600"/>, title: "Email", content: "kontakt@zareczynymarzen.pl" },
 ];
 
@@ -35,7 +34,7 @@ export default function ContactDetails() {
     return(
         <section ref={container} className="bg-white pb-20 sm:pb-28 mt-10">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {details.map(item => (
                         <div key={item.title} className="detail-card border-2 border-brand-300 rounded-lg p-8 text-center flex flex-col items-center justify-center min-h-[200px]">
                             <div className="mb-4">{item.icon}</div>

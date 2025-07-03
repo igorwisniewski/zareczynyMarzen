@@ -59,11 +59,10 @@ export default function Testimonials() {
         <section ref={container} className="py-16 sm:py-24 bg-brand-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <h2 className="section-title font-serif text-4xl font-bold text-center mb-16 text-gray-950">Dla nas to nie tylko słowa</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <TestimonialCard name="Anna i Piotr" imgSrc="/images/avatars/avatar-1.jpg" />
-                    <TestimonialCard name="Katarzyna i Marek" imgSrc="/images/avatars/avatar-2.jpg" />
-                    <TestimonialCard name="Ewa i Tomasz" imgSrc="/images/avatars/avatar-3.jpg" />
-                    <TestimonialCard name="Magdalena i Adam" imgSrc="/images/avatars/avatar-4.jpg" />
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <TestimonialCard name="Anna i Piotr" imgSrc="/images/avatar-1.jpg" />
+                    <TestimonialCard name="Katarzyna i Marek" imgSrc="/images/avatar-2.jpg" />
+                    <TestimonialCard name="Ewa i Tomasz" imgSrc="/images/avatar-3.jpg" />
                 </div>
             </div>
         </section>
