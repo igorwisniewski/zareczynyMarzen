@@ -5,7 +5,7 @@ export default function Footer() {
         <footer className="bg-neutral-900 text-white py-10  z-10">
             <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
-                    <h3 className="font-bold text-lg mb-2">Zaeczyny Marzeń</h3>
+                    <h3 className="font-bold text-lg mb-2">Zaręczyny Marzeń</h3>
                     <p className="text-sm">Twój ślub, nasz plan</p>
                 </div>
 
