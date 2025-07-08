@@ -4,10 +4,10 @@ import ScrollProgressBar from "@/app/components/ScrollProgressBar";
 
 export default function Home() {
   return (
-      <>
+      <div className="max-h-screen">
         <Navbar/>
         <ScrollProgressBar/>
         <WeddingChoice/>
-      </>
+      </div>
   );
 }

@@ -9,5 +9,5 @@ module.exports = {
     generateRobotsTxt: true,
 
     // Opcjonalnie: możesz dodać inne konfiguracje, jeśli potrzebujesz
-    // ...
+    //test
 };
