@@ -81,7 +81,7 @@ export default function MemoryCreators() {
                 <div className="memory-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" style={{ perspective: "1000px" }}>
                     {memories.map(item => (
                         <div key={item.title} className="memory-card bg-gradient-to-br from-white to-gray-50 p-8 rounded-xl shadow-lg text-center border border-gray-200" style={{ transformStyle: "preserve-3d" }}>
-                            <div className="icon-wrapper mx-auto w-16 h-16 mb-5 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center border-2 border-white shadow-inner">
+                            <div className="icon-wrapper mx-auto w-16 h-16 mb-5 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center border-2 border-white shadow-inner">
                                 {item.icon}
                             </div>
                             <h3 className="card-title text-xl font-semibold mb-2 text-black">{item.title}</h3>

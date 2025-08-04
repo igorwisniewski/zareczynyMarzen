@@ -15,8 +15,11 @@ export default function Footer() {
                         <li><Link href="/" className="hover:underline">Strona główna</Link></li>
                         <li><Link href="/o-nas" className="hover:underline">O nas</Link></li>
                         <li><Link href="/galeria" className="hover:underline">Galeria</Link></li>
+                        <li><Link href="/concierge" className="hover:underline">Konsjerż</Link></li>
                         <li><Link href="/kontakt" className="hover:underline">Kontakt</Link></li>
-                        <li><Link href="/polityka-prywatnosci" className="hover:underline">Polityka Prywatności</Link></li>
+
+                        <li><Link href="/polityka-prywatnosci" className="hover:underline">Polityka Prywatności</Link>
+                        </li>
 
                     </ul>
                 </div>

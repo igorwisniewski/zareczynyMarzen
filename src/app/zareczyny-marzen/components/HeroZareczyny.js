@@ -36,7 +36,7 @@ export default function HeroZareczyny() {
                     <div className="bg-brand p-1 rounded-lg shadow">
                         <Link
                             href="/kontakt"
-                            className="hero-btn block border-white border-2 text-white text-center px-8 py-2.5 rounded-md font-semibold hover:bg-gray-100 hover:text-black transition-colors duration-300"
+                            className="hero-btn block border-rose-400 border-2 text-white text-center px-8 py-2.5 rounded-md font-semibold hover:bg-rose-300 hover:text-black transition-colors duration-300"
                         >
                             Skontaktuj się z nami
                         </Link>

@@ -1,0 +1,590 @@
+// components/Testimonials.js
+"use client";
+
+import { useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+import Image from 'next/image';
+
+// Rejestracja wtyczki GSAP
+gsap.registerPlugin(ScrollTrigger);
+
+// Ulepszony komponent karty
+const TestimonialCard = ({ name, imgSrc }) => (
+    <div className="testimonial-card bg-white p-6 rounded-lg shadow-md border-t-4 border-brand-300">
+        <div className="flex items-center mb-4">
+            <div className="relative w-14 h-14 rounded-full mr-4 overflow-hidden border-2 border-brand-200">
+                <Image
+                    src={imgSrc}
+                    alt={`Avatar ${name}`}
+                    layout="fill"
+                    objectFit="cover"
+                />
+            </div>
+            <div>
+                <p className="font-semibold text-gray-800">{name}</p>
+                <div className="text-yellow-400 text-xl">★★★★★</div>
+            </div>
+        </div>
+        <p className="text-gray-600 italic">&#34;Najlepsza decyzja w naszym życiu! Profesjonalizm i zaangażowanie na najwyższym poziomie. Dziękujemy!&#34;</p>
+    </div>
+);
+
+// Główny komponent sekcji
+export default function Testimonials() {
+    const container = useRef(null);
+
+    useGSAP(() => {
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: container.current,
+                start: "top 85%",
+                toggleActions: "play none none none",
+            }
+        });
+
+        tl.from(".section-title", { opacity: 0, y: 40, duration: 0.8, ease: "power3.out" })
+            .from(".testimonial-card", {
+                opacity: 0,
+                y: 50,
+                duration: 0.6,
+                stagger: 0.2, // Animacja jedna po drugiej
+                ease: "power2.out"
+            }, "-=0.5");
+
+    }, { scope: container });
+
+    return (
+        <section ref={container} className="py-16 sm:py-24 bg-brand-50">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 className="section-title font-serif text-4xl font-bold text-center mb-16 text-gray-950">Dla nas to nie tylko słowa</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <TestimonialCard name="Anna i Piotr" imgSrc="/images/avatar-1.jpg" />
+                    <TestimonialCard name="Katarzyna i Marek" imgSrc="/images/avatar-2.jpg" />
+                    <TestimonialCard name="Ewa i Tomasz" imgSrc="/images/avatar-3.jpg" />
+                </div>
+            </div>
+        </section>
+    );
+}
+
+
+// components/Packages.js
+"use client";
+
+import Image from 'next/image';
+import Link from 'next/link';
+import { useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+
+// Rejestracja wtyczki
+gsap.registerPlugin(ScrollTrigger);
+
+const PackageCard = ({ imgSrc, title, description, features }) => (
+    // Dodajemy klasę do targetowania przez GSAP
+    <div className="package-card bg-white border-2 border-brand-200 rounded-sm " >
+        <div className="relative w-full h-56">
+            <Image src={imgSrc} alt={title} layout="fill" objectFit="cover" className="rounded-t-sm border-b-brand-200 border-b-2" />
+        </div>
+        <div className="p-6">
+            <h3 className="font-serif text-xl font-semibold mb-4 text-black">{title}</h3>
+            <p className="text-gray-700 mb-4">{description}</p>
+            <ul className="space-y-2 text-gray-600 mb-6 list-disc list-inside">
+                {features.map((feature, i) => <li key={i}>{feature}</li>)}
+            </ul>
+            <Link href="#" className="font-semibold text-brand-600 hover:text-brand-800 transition-colors text-center">
+                Dowiedz się więcej &rarr;
+            </Link>
+        </div>
+    </div>
+);
+
+export default function Packages() {
+    const container = useRef(null);
+
+    useGSAP(() => {
+        // Tworzymy oś czasu, która uruchomi się po przewinięciu do sekcji
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: container.current,
+                start: "top 80%", // zacznij, gdy 80% sekcji jest widoczne
+                toggleActions: "play none none none", // uruchom raz
+            }
+        });
+
+        // Animujemy pojawienie się nagłówków
+        tl.from(".section-subtitle", { opacity: 0, y: 30, duration: 0.6, ease: "power2.out" })
+            .from(".section-title", { opacity: 0, y: 30, duration: 0.8, ease: "power2.out" }, "-=0.4")
+            // Animujemy karty jedna po drugiej
+            .from(".package-card", {
+                opacity: 0,
+                y: 50,
+                duration: 0.8,
+                stagger: 0.2, // klucz do pojawiania się jedna po drugiej
+                ease: "power3.out"
+            }, "-=0.5");
+
+    }, { scope: container });
+
+    return (
+        <section ref={container} className="py-16 sm:py-24 bg-gray-50 min-h-screen" id="uslugi">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" >
+                {/* Dodajemy klasy do animacji */}
+                <p className="section-subtitle text-brand-700 font-semibold tracking-wider">EKSKLUZYWNE PAKIETY ŚLUBNE</p>
+                <h2 className="section-title font-serif text-4xl font-bold mt-2 mb-12 text-gray-950">Dopasowane do Waszych Potrzeb</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
+                    {packages.map(p => <PackageCard key={p.title} {...p} />)}
+                </div>
+            </div>
+        </section>
+    );
+}
+
+const packages = [
+    { title: 'Konsultacje Ślubne', imgSrc: '/images/konsultacje-slubne.jpg', description:'Profesjonalne doradztwo w zakresie planowania, koncepcji i realizacji Waszego wymarzonego wesela.', features: ['Analiza potrzeb i oczekiwań', 'Propozycje stylizacji i motywów','Wsparcie w wyborze lokalizacji'] },
+    { title: 'Koordynacja Dnia Ślubu', imgSrc: '/images/pomoc-wdzien-slubu.jpg', description:'Kompleksowa opieka nad przebiegiem uroczystości, abyście mogli cieszyć się z tego wyjątkowego dnia.', features: ['Nadzór nad harmonogramem', 'Koordynacja dostawców', 'Rozwiązywanie nieprzewidzianych sytuacji'] },
+    { title: 'Kompleksowa Organizacja', imgSrc: '/images/organizacja-slubu.jpg', description:'Pełne wsparcie od koncepcji po realizację, z dbałością o każdy detal Waszego wymarzonego wesela.', features: ['Opracowanie koncepcji i budżetu', 'Wybór i negocjacje z dostawcami', 'Kompleksowa koordynacja i realizacja'] },
+];
+
+
+// components/InspirationGallery.js
+"use client";
+
+import { useState, useRef } from 'react';
+import Image from 'next/image';
+import { useGSAP } from '@gsap/react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+// Rejestracja wtyczki
+gsap.registerPlugin(ScrollTrigger);
+
+// Przykładowa lista zdjęć (umieść swoje zdjęcia w folderze /public/images/gallery)
+const allImages = [
+    { src: '/images/gallery/galleria-1.jpg', alt: 'Dekoracja stołu weselnego' },
+    { src: '/images/gallery/galleria-2.jpg', alt: 'Para młoda podczas sesji' },
+    { src: '/images/gallery/galleria-3.jpg', alt: 'Obrączki ślubne na kwiatach' },
+    { src: '/images/gallery/galleria-4.jpg', alt: 'Detal sukni ślubnej' },
+    { src: '/images/gallery/galleria-5.jpg', alt: 'Eleganckie nakrycie stołu' },
+    { src: '/images/gallery/galleria-6.jpg', alt: 'Pan młody poprawiający muszkę' },
+    { src: '/images/gallery/galleria-7.jpg', alt: 'Bukiet ślubny panny młodej' },
+    { src: '/images/gallery/galleria-8.jpg', alt: 'Para młoda przy ołtarzu' },
+    { src: '/images/gallery/galleria-9.jpg', alt: 'Tort weselny z dekoracjami' },
+    { src: '/images/gallery/galleria-10.jpg', alt: 'Goście wznoszący toast' },
+    { src: '/images/gallery/galleria-11.jpg', alt: 'Samochód ślubny z ozdobami' },
+    { src: '/images/gallery/galleria-12.jpg', alt: 'Pierwszy taniec pary młodej' },
+];
+
+
+
+const IMAGES_PER_PAGE = 6;
+
+export default function InspirationGallery() {
+    const [visibleCount, setVisibleCount] = useState(IMAGES_PER_PAGE);
+    const container = useRef(null);
+    const gridRef = useRef(null);
+
+    useGSAP(() => {
+        const animTimeout = setTimeout(() => {
+            const items = gsap.utils.toArray('.gallery-item:not(.has-animated)');
+
+            items.forEach(item => {
+                gsap.to(item, {
+                    scrollTrigger: {
+                        trigger: item,
+                        start: 'top 90%',
+                        toggleActions: 'play none none none',
+                    },
+                    opacity: 1,
+                    scale: 1,
+                    y: 0,
+                    duration: 0.6,
+                    ease: 'power3.out',
+                    onComplete: () => {
+                        item.classList.add('has-animated');
+                    }
+                });
+            });
+        }, 100);
+        return () => clearTimeout(animTimeout);
+    }, { dependencies: [visibleCount], scope: container });
+
+    const handleLoadMore = () => {
+        setVisibleCount(prevCount => prevCount + IMAGES_PER_PAGE);
+    };
+
+    // ZMIANA: Całkowicie nowa logika dla funkcji zwijania
+    const handleShowLess = () => {
+        // 1. Pobieramy elementy, które mają zostać ukryte
+        const itemsToHide = gsap.utils.toArray('.gallery-item').slice(IMAGES_PER_PAGE);
+
+        // Upewniamy się, że są jakieś elementy do ukrycia
+        if (itemsToHide.length === 0) return;
+
+        // 2. Uruchamiamy na nich animację "chowania"
+        gsap.to(itemsToHide, {
+            opacity: 0,
+            scale: 0.9,
+            y: 30,
+            duration: 0.5,
+            stagger: 0.05, // Lekkie opóźnienie dla każdego kolejnego elementu
+            ease: "power2.in",
+            // 3. Po zakończeniu animacji, aktualizujemy stan w Reakcie
+            onComplete: () => {
+                setVisibleCount(IMAGES_PER_PAGE);
+                // Opcjonalnie: przewijamy do góry galerii
+                if (gridRef.current) {
+                    gridRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }
+        });
+    };
+
+    const imagesToShow = allImages.slice(0, visibleCount);
+
+    return (
+        <section ref={container} className="py-16 sm:py-24 bg-white">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 className="font-serif text-4xl font-bold mb-4 text-brand-900">Galeria Inspiracji</h2>
+                <p className="max-w-2xl mx-auto text-gray-600 mb-12">
+                    Zobacz, jak marzenia innych par stały się rzeczywistością. Każde zdjęcie to historia, którą pomogliśmy napisać.
+                </p>
+                <div ref={gridRef} className="gallery-grid grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
+                    {imagesToShow.map((image) => (
+                        <div key={image.src} className="gallery-item aspect-square relative overflow-hidden rounded-lg shadow-md opacity-0 scale-95 translate-y-10">
+                            <Image
+                                src={image.src}
+                                alt={image.alt}
+                                layout="fill"
+                                objectFit="cover"
+                                className="transform hover:scale-110 transition-transform duration-500 ease-in-out"
+                                onError={(e) => console.error(`Błąd ładowania obrazka: ${image.src}`, e)}
+                            />
+                        </div>
+                    ))}
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    {visibleCount > IMAGES_PER_PAGE && (
+                        <button
+                            onClick={handleShowLess}
+                            className="bg-brand-500 text-white hover:bg-white hover:text-brand-500 border-brand-500 border-2 px-8 py-3 rounded-md transition-colors duration-300 font-semibold"
+                        >
+                            Pokaż mniej
+                        </button>
+                    )}
+
+                    {visibleCount < allImages.length && (
+                        <button
+                            onClick={handleLoadMore}
+                            className="bg-brand-500 text-white hover:bg-white hover:text-brand-500 border-brand-500 border-2 px-8 py-3 rounded-md transition-colors duration-300 font-semibold"
+                        >
+                            Zobacz więcej
+                        </button>
+                    )}
+                </div>
+            </div>
+        </section>
+    );
+}
+
+// components/HeroSlub.js
+"use client";
+
+import Link from 'next/link';
+import { useRef } from 'react';
+import { gsap } from 'gsap';
+import { useGSAP } from '@gsap/react';
+
+export default function HeroSlub() {
+    const scope = useRef(null); // Tworzymy referencję do kontenera animacji
+
+    useGSAP(() => {
+        // Ustawiamy początkowy stan (niewidoczne elementy)
+        // Można to też zrobić w .from(), ale tak jest czytelniej
+        gsap.set([".hero-p", ".hero-h1", ".hero-hr", ".hero-btn"], { opacity: 0, y: 30 });
+
+        // Tworzymy oś czasu dla sekwencji animacji
+        const tl = gsap.timeline({ defaults: { ease: "power3.out", duration: 1 } });
+
+        tl.to(".hero-p", { opacity: 1, y: 0, delay: 0.2 })
+            .to(".hero-h1", { opacity: 1, y: 0 }, "-=0.8") // Startuje 0.8s przed końcem poprzedniej animacji
+            .to(".hero-hr", { opacity: 1, y: 0, duration: 0.8 }, "-=0.7")
+            .to(".hero-btn", { opacity: 1, y: 0, stagger: 0.2 }, "-=0.5"); // stagger animuje przyciski jeden po drugim
+
+    }, { scope: scope }); // Ograniczamy działanie GSAP do naszego kontenera
+
+    return (
+        // Dodajemy ref do głównej sekcji
+        <section ref={scope} className="relative min-h-[95vh] w-full flex items-center justify-center text-white text-center overflow-hidden">
+            {/* Tło - zastąp ścieżką do Twojego obrazka */}
+            <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('/images/sluby-header.jpg')" }}></div>
+            {/* Nakładka przyciemniająca */}
+            <div className="absolute inset-0 bg-black/60"></div>
+
+            <div className="relative z-10 p-4">
+                {/* Dodajemy klasy do animacji */}
+                <p className="hero-p text-sm md:text-base tracking-wider mb-2">Tworzymy Nie Tylko Wspomnienia </p>
+                <h1 className="hero-h1 text-4xl md:text-6xl font-serif font-bold leading-tight mb-6">
+                    Twoje wesele marzeń <br/> nasza perfekcyjna realizacja
+                </h1>
+                <hr className="hero-hr max-w-[10%] m-auto mb-5 text-brand-500 h-[3px] bg-brand-500 rounded-full"/>
+
+                <div className="flex flex-row flex-wrap gap-4 justify-center items-center">
+
+                    <Link
+                        href="/slub-marzen#uslugi"
+                        className="hero-btn bg-brand-500 hover:bg-white hover:text-brand-500 px-8 py-3 rounded-md font-semibold transition-colors duration-300 text-center"
+                    >
+                        Poznaj naszą ofertę
+                    </Link>
+
+                    <div className="bg-brand p-1 rounded-lg shadow">
+                        <Link
+                            href="/kontakt"
+                            className="hero-btn block border-white border-2 text-white text-center px-8 py-2.5 rounded-md font-semibold hover:bg-gray-100 hover:text-black transition-colors duration-300"
+                        >
+                            Skontaktuj się z nami
+                        </Link>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    );
+}
+
+
+
+// components/FooterCTA.js
+"use client";
+
+import Link from 'next/link';
+import { useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+
+// Rejestracja wtyczki GSAP
+gsap.registerPlugin(ScrollTrigger);
+
+export default function FooterCTA() {
+    const container = useRef(null);
+
+    useGSAP(() => {
+        // Tworzymy oś czasu, która uruchomi się po przewinięciu do sekcji
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: container.current,
+                start: "top 85%",
+                toggleActions: "play none none none",
+            }
+        });
+
+        // Animujemy pojawienie się nagłówka i przycisku
+        tl.from(".cta-title", { opacity: 0, y: 40, duration: 1, ease: "power3.out" })
+            .from(".cta-button", { opacity: 0, y: 40, duration: 1, ease: "power3.out" }, "-=0.7");
+
+    }, { scope: container });
+
+    return (
+        <section ref={container} className="relative py-24 bg-gray-800 text-white text-center overflow-hidden">
+            <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('/images/tlo-cta.jpg')" }}></div>
+            <div className="absolute inset-0 bg-black/60"></div>
+            <div className="relative z-10 p-4">
+                <h2 className="cta-title font-serif text-4xl font-bold mb-8">Spełniamy Twoje Marzenia</h2>
+                <div className="cta-button bg-brandGold-500 p-1 rounded-lg inline-block shadow-lg">
+                    <Link href="/kontakt" className="block bg-brand-500 text-white border-brand-500 border-2 px-10 py-3 rounded-md font-semibold hover:bg-white hover:text-brand-500 transition-colors duration-300">
+                        Skontaktuj się
+                    </Link>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+
+
+// components/Features.js
+"use client";
+
+import { useGSAP } from "@gsap/react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SparklesIcon, ClipboardDocumentCheckIcon, CameraIcon } from "@heroicons/react/24/outline";
+import { useRef } from "react";
+
+gsap.registerPlugin(ScrollTrigger);
+
+const FeatureCard = ({ icon, title, description }) => (
+    <div className="feature-card bg-white p-8 text-center rounded-lg shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 ease-in-out border-t-4 border-brand-400">
+        <div className="mx-auto w-16 h-16 mb-5 rounded-full bg-brand-50 flex items-center justify-center text-brand-500">
+            {icon}
+        </div>
+        <h3 className="font-serif text-xl font-semibold mb-3 text-gray-800">{title}</h3>
+        <p className="text-gray-600 leading-relaxed">{description}</p>
+    </div>
+);
+
+export default function Features() {
+    const container = useRef(null);
+
+    useGSAP(() => {
+        // 👇 ZMIANA: Pobieramy wszystkie karty do tablicy
+        const cards = gsap.utils.toArray('.feature-card');
+
+        // 👇 ZMIANA: Tworzymy pętlę i dla każdej karty tworzymy osobną animację
+        cards.forEach(card => {
+            gsap.from(card, {
+                scrollTrigger: {
+                    trigger: card, // Triggerem jest teraz sama karta
+                    start: "top 85%", // Animacja startuje, gdy 85% karty jest widoczne
+                    toggleActions: "play none none none",
+                },
+                opacity: 0,
+                y: 60,
+                duration: 0.5,
+                ease: "power3.out",
+            });
+        });
+
+    }, { scope: container });
+
+    return (
+        <section ref={container} className="py-20 sm:py-28 bg-gray-50 min-h-[110vh] flex items-center justify-center ">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="text-center mb-16">
+                    <h2 className="text-brand-800 font-semibold tracking-wider uppercase">NASZA SPECJALNOŚĆ</h2>
+                    <p className="font-serif text-4xl md:text-5xl font-bold mt-2 text-gray-900">Perfekcja w każdym
+                        detalu</p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <FeatureCard
+                        icon={<SparklesIcon className="w-8 h-8"/>}
+                        title="Dbałość o Detale"
+                        description="Wierzymy, że magia tkwi w szczegółach. Każdy element jest starannie dopracowany, by stworzyć spójną i zachwycającą całość."
+                    />
+                    <FeatureCard
+                        icon={<ClipboardDocumentCheckIcon className="w-8 h-8"/>}
+                        title="Bezstresowa Organizacja"
+                        description="Zdejmujemy z Waszych barków ciężar planowania. Nasz proces jest transparentny i uporządkowany, byście mogli cieszyć się każdą chwilą."
+                    />
+                    <FeatureCard
+                        icon={<CameraIcon className="w-8 h-8"/>}
+                        title="Niezapomniane Wspomnienia"
+                        description="Naszym celem jest tworzenie nie tylko wydarzeń, ale wspomnień, które zostaną z Wami na całe życie, uwiecznione w idealnej oprawie."
+                    />
+                </div>
+            </div>
+        </section>
+    );
+}
+
+
+// components/Experience.js
+"use client";
+
+import Image from 'next/image';
+import { useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+
+// Rejestrujemy wtyczkę ScrollTrigger
+gsap.registerPlugin(ScrollTrigger);
+
+export default function Experience() {
+    const container = useRef(null);
+
+    useGSAP(() => {
+        // Animacja dla całego bloku tekstowego (płynne pojawienie się)
+        gsap.from(".text-content", {
+            scrollTrigger: {
+                trigger: ".text-content",
+                start: "top 80%",
+                toggleActions: "play none none none",
+            },
+            opacity: 0,
+            y: 50,
+            duration: 1,
+            ease: "power3.out",
+        });
+
+        // Animacja dla licznika
+        const counters = gsap.utils.toArray(".counter-number");
+        counters.forEach(counter => {
+            const target = parseInt(counter.dataset.to, 10);
+
+            // ZMIANA: Usunięto cudzysłowy wokół nazwy zmiennej
+            let proxy = { value: 0 };
+
+            // ZMIANA: Używamy zmiennej, a nie tekstu
+            gsap.to(proxy, {
+                scrollTrigger: {
+                    trigger: counter,
+                    start: "top 85%",
+                    toggleActions: "play none none none",
+                },
+                value: target,
+                duration: 2,
+                ease: "power2.out",
+                onUpdate: () => {
+                    // Aktualizujemy tekst w elemencie przy każdej klatce animacji
+                    counter.innerText = Math.round(proxy.value);
+                },
+            });
+        });
+
+    }, { scope: container });
+
+    return (
+        <section ref={container} className="bg-brand-100 py-20 sm:py-28 min-h-screen">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+                    {/* Obrazek po lewej z ozdobną ramką */}
+                    <div className="p-4 bg-white shadow-xl">
+                        <div className="relative w-full aspect-[4/5]">
+                            <Image
+                                src="/images/sluby-fst.jpg" // Podmień na właściwą ścieżkę
+                                alt="Wedding planner w trakcie pracy"
+                                layout="fill"
+                                objectFit="cover"
+                            />
+                        </div>
+                    </div>
+
+                    {/* Tekst po prawej */}
+                    <div className="text-content text-brand-900">
+                        <p className="font-semibold tracking-wider uppercase text-brand-600 mb-3">O nas</p>
+                        <h2 className="font-serif text-4xl md:text-5xl font-bold mb-6">
+                            Bezstresowa Organizacja <br /> Unikalne Doświadczenia
+                        </h2>
+                        <p className="text-brand-800/90 leading-relaxed mb-10">
+                            Śluby Marzeń to zespół doświadczonych specjalistów, którzy z pasją tworzą wyrafinowane uroczystości ślubne. Nasze podejście opiera się na głębokim zrozumieniu Waszych potrzeb i marzeń, przekształcając je w niezapomniane wydarzenia. Specjalizujemy się w organizacji ekskluzywnych wesel, gdzie każdy detal jest dopracowany do perfekcji. Nasza filozofia opiera się na harmonijnym połączeniu elegancji, luksusu i osobistego charakteru uroczystości.
+                        </p>
+
+                        {/* Okręgi z latami doświadczenia */}
+                        <div className="flex flex-col sm:flex-row gap-8">
+                            <div className="text-center flex flex-col items-center">
+                                <div className="bg-brand-900 text-white rounded-full w-28 h-28 flex items-center justify-center font-bold text-4xl font-serif">
+                                    <span className="counter-number" data-to="10">0</span>+
+                                </div>
+                                <p className="mt-4 max-w-[150px] text-sm text-brand-800">Lat doświadczenia w branży ślubnej</p>
+                            </div>
+                            <div className="text-center flex flex-col items-center">
+                                <div className="bg-brand-900 text-white rounded-full w-28 h-28 flex items-center justify-center font-bold text-4xl font-serif">
+                                    <span className="counter-number" data-to="50">0</span>+
+                                </div>
+                                <p className="mt-4 max-w-[150px] text-sm text-brand-800">Zorganizowanych, unikalnych wesel</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+}

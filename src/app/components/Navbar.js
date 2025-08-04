@@ -54,6 +54,7 @@ export default function Navbar() {
         { name: 'O nas', href: '/o-nas' },
         { name: 'Galeria', href: '/galeria' },
         { name: 'Kontakt', href: '/kontakt' },
+        { name: 'Konsjerż', href: '/concierge' },
     ];
 
     return (

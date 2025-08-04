@@ -13,7 +13,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const PackageCard = ({ imgSrc, title, description, features }) => (
     // Dodajemy klasę do targetowania przez GSAP
-    <div className="package-card bg-white border-2 border-brand-200 rounded-sm " >
+    <div className="package-card bg-white border-2 border-rose-200 rounded-sm " >
         <div className="relative w-full h-56">
             <Image src={imgSrc} alt={title} layout="fill" objectFit="cover" className="rounded-t-sm border-b-brand-200 border-b-2" />
         </div>
@@ -61,7 +61,7 @@ export default function Packages() {
         <section ref={container} className="py-16 sm:py-24 bg-gray-50 min-h-screen" id="uslugi">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" >
                 {/* Dodajemy klasy do animacji */}
-                <p className="section-subtitle text-brand-700 font-semibold tracking-wider">EKSKLUZYWNE PAKIETY ŚLUBNE</p>
+                <p className="section-subtitle text-rose-700 font-semibold tracking-wider">EKSKLUZYWNE PAKIETY ŚLUBNE</p>
                 <h2 className="section-title font-serif text-4xl font-bold mt-2 mb-12 text-gray-950">Dopasowane do Waszych Potrzeb</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
                     {packages.map(p => <PackageCard key={p.title} {...p} />)}

@@ -84,7 +84,7 @@ export default function ProposalArt() {
                     <p className="mt-4 text-lg text-gray-600">
                         Nasza filozofia opiera się na przekonaniu, że każda miłość zasługuje na wyjątkową oprawę. Tworzymy nie tylko zaręczyny, ale wspomnienia na całe życie.
                     </p>
-                    <div className="w-24 h-1 bg-brand-400 mx-auto mt-6"></div>
+                    <div className="w-24 h-1 bg-rose-400 mx-auto mt-6"></div>
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">

@@ -64,14 +64,14 @@ export default function ProcessSteps() {
                 {/* Kontener dla siatki i linii - musi być 'relative' */}
                 <div className="relative">
                     {/* Linia łącząca w tle */}
-                    <div className="absolute top-8 left-0 right-0 h-0.5 bg-brand-200 w-full hidden lg:block">
-                        <div className="connecting-line-fg h-full bg-brand-500"></div>
+                    <div className="absolute top-8 left-0 right-0 h-0.5 bg-rose-200 w-full hidden lg:block">
+                        <div className="connecting-line-fg h-full bg-rose-500"></div>
                     </div>
 
                     <div className="steps-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12 relative">
                         {steps.map(step => (
                             <div key={step.num} className="step-card text-center flex flex-col items-center">
-                                <div className="step-circle w-16 h-16 mb-5 rounded-full border-2 bg-white border-brand-500 text-brand-600 hover:bg-brand-500 hover:text-white flex items-center justify-center font-serif text-2xl font-bold z-10">
+                                <div className="step-circle w-16 h-16 mb-5 rounded-full border-2 bg-white border-rose-500 text-rose-600 hover:bg-rose-500 hover:text-white flex items-center justify-center font-serif text-2xl font-bold z-10">
                                     {step.num}
                                 </div>
                                 <h3 className="step-title text-xl font-semibold mb-2 text-gray-900">{step.title}</h3>

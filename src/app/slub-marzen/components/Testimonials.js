@@ -12,7 +12,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 // Ulepszony komponent karty
 const TestimonialCard = ({ name, imgSrc }) => (
-    <div className="testimonial-card bg-white p-6 rounded-lg shadow-md border-t-4 border-brand-300">
+    <div className="testimonial-card bg-white p-6 rounded-lg shadow-md border-t-4 border-rose-300">
         <div className="flex items-center mb-4">
             <div className="relative w-14 h-14 rounded-full mr-4 overflow-hidden border-2 border-brand-200">
                 <Image
