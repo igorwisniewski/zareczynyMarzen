@@ -1,0 +1,306 @@
+// components/CooperationProcess.js
+"use client";
+
+import { useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+
+gsap.registerPlugin(ScrollTrigger);
+
+const steps = [
+    { num: 1, title: "Bezpłatna konsultacja", description: "Zaczynamy od rozmowy, by poznać Wasze marzenia." },
+    { num: 2, title: "Kreacja Scenariusza", description: "Opracowujemy unikalny koncept i przedstawiamy ofertę." },
+    { num: 3, title: "Perfekcyjna Realizacja", description: "Dopracowujemy każdy detal, by dzień był idealny." },
+];
+
+export default function CooperationProcess() {
+    const container = useRef(null);
+    useGSAP(() => {
+        gsap.from(".section-header > *", {
+            scrollTrigger: { trigger: ".section-header", start: "top 85%", toggleActions: "play none none none" },
+            opacity: 0, y: 40, stagger: 0.2, duration: 0.8
+        });
+
+        gsap.from(".connecting-line", {
+            scrollTrigger: { trigger: ".steps-grid", start: "top center", end: "bottom center", scrub: 1 },
+            scaleX: 0, transformOrigin: "left center", ease: "none"
+        });
+
+        const cards = gsap.utils.toArray('.step-card');
+        cards.forEach(card => {
+            gsap.from(card, {
+                scrollTrigger: { trigger: card, start: "top 85%", toggleActions: "play none none none" },
+                opacity: 0, y: 60, duration: 0.8, ease: 'power3.out'
+            });
+        });
+    }, { scope: container });
+
+    return(
+        <section ref={container} className="py-20 sm:py-28 bg-white">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="section-header text-center mb-20">
+                    <h2 className="font-serif text-4xl font-bold text-gray-900">Proces Współpracy</h2>
+                    <p className="max-w-2xl mx-auto text-gray-600 mt-4">Od pierwszej rozmowy po wielki finał - jesteśmy z Wami na każdym kroku, dbając o płynny i bezstresowy przebieg przygotowań.</p>
+                </div>
+                <div className="relative">
+                    <div className="absolute top-8 left-0 w-full h-0.5 bg-brand-200 hidden md:block">
+                        <div className="connecting-line h-full bg-brand-500"></div>
+                    </div>
+                    <div className="steps-grid grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-12 relative">
+                        {steps.map(step => (
+                            <div key={step.num} className="step-card text-center flex flex-col items-center">
+                                <div className="w-16 h-16 mb-5 rounded-full border-2 bg-white border-brand-500 text-brand-600 hover:bg-brand-500 hover:text-white flex items-center justify-center font-serif text-2xl font-bold z-10">
+                                    {step.num}
+                                </div>
+                                <h3 className="text-xl font-semibold mb-2 text-gray-900">{step.title}</h3>
+                                <p className="text-gray-600">{step.description}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+
+
+"use client";
+
+import Image from 'next/image';
+import Link from 'next/link';
+import { useRef } from 'react';
+import { gsap } from 'gsap';
+import { useGSAP } from '@gsap/react';
+
+export default function AboutHero() {
+    const container = useRef(null);
+    useGSAP(() => {
+        // Animacja kolumny z obrazem
+        gsap.from(".image-col", { x: -100, opacity: 0, duration: 1, ease: 'power3.out', delay: 0.2 });
+
+        // Animacja kolumny z tekstem
+        gsap.from(".text-col", { x: 100, opacity: 0, duration: 1, ease: 'power3.out', delay: 0.2 });
+
+        // Animacja nagłówka H1
+        gsap.from(".text-col h1", { y: 20, opacity: 0, duration: 0.8, ease: 'power2.out', delay: 0.5 });
+
+        // Animacja paragrafu P
+        gsap.from(".text-col p", { y: 20, opacity: 0, duration: 0.8, ease: 'power2.out', delay: 0.7 });
+
+        // Animacja przycisku Link
+        gsap.from(".text-col .contact-button", { y: 20, opacity: 0, duration: 0.8, ease: 'power2.out', delay: 0.9 });
+
+    }, { scope: container });
+
+    return(
+        <section ref={container} className="py-20 sm:py-28 bg-white overflow-hidden min-h-[120vh]">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center  ">
+                    <div className="image-col w-full aspect-[4/5] relative rounded-lg bottom-0">
+                        <Image src="/images/onas-header.png" alt="Wedding planner" layout="fill" objectFit="cover" className="rounded-lg" />
+                    </div>
+                    <div className="text-col lg:pl-12">
+                        <h1 className="font-serif text-4xl md:text-5xl font-bold text-gray-900">Twój pomysł, nasz plan</h1>
+                        <p className="mt-6 text-lg text-gray-600 leading-relaxed">W Kreacji Niezapomnianych Zaręczyn i Ślubów specjalizujemy się w tworzeniu nie tylko wydarzeń, ale przede wszystkim wspomnień, które zostają na całe życie. Nasza pasja i doświadczenie pozwalają nam przekształcać Wasze marzenia w perfekcyjnie zorganizowaną rzeczywistość.</p>
+                        <div className="mt-8">
+                            <Link
+                                href="/kontakt"
+                                className="block border-brand-500 bg-brand-500 border-2 text-white text-center px-8 py-2.5 rounded-md font-semibold hover:bg-gray-100 hover:text-brand-500 transition-colors duration-300 max-w-[50%] contact-button"
+                            >
+                                Skontaktuj się z nami
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+
+
+// components/Differentiators.js
+"use client";
+
+import Image from 'next/image';
+import { useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+
+gsap.registerPlugin(ScrollTrigger);
+
+const points = [
+    { num: 1, text: "Ekskluzywny dostęp do najlepszych lokalizacji i usług." },
+    { num: 2, text: "Kreatywność bez granic w tworzeniu unikalnych koncepcji." },
+    { num: 3, text: "Pełne partnerstwo i wsparcie na każdym etapie planowania." },
+];
+
+export default function Differentiators() {
+    const container = useRef(null);
+    useGSAP(() => {
+        const trigger = { trigger: container.current, start: "top 80%", toggleActions: "play none none none" };
+
+        gsap.from(".image-col", { scrollTrigger: trigger, xPercent: -100, opacity: 0, duration: 1, ease: 'power3.out' });
+        gsap.from(".text-col", { scrollTrigger: trigger, xPercent: 100, opacity: 0, duration: 1, ease: 'power3.out' });
+
+    }, { scope: container });
+
+    return(
+        <section ref={container} className="py-20 sm:py-28 bg-white overflow-hidden">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div className="image-col w-full aspect-[4/5] relative rounded-lg shadow-xl">
+                        <Image src="/images/about-scd.jpg" alt="Para młoda w kościele" layout="fill" objectFit="cover" className="rounded-lg"/>
+                    </div>
+                    <div className="text-col lg:pl-12">
+                        <h2 className="font-serif text-4xl font-bold text-gray-900">Nasze Wyróżniki</h2>
+                        <p className="mt-4 text-lg text-gray-600">Sumą tych elementów jest Wasze idealne dzieło.</p>
+                        <ul className="mt-8 space-y-6">
+                            {points.map(point => (
+                                <li key={point.num} className="flex items-start gap-4">
+                                    <div className="flex-shrink-0 w-10 h-10 bg-brand-100 text-brand-600 rounded-full flex items-center justify-center font-bold font-serif text-lg">
+                                        {point.num}
+                                    </div>
+                                    <p className="text-gray-700 text-lg pt-1.5">{point.text}</p>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+
+// components/FinalCTA.js
+"use client";
+
+import Link from 'next/link';
+import { useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+
+gsap.registerPlugin(ScrollTrigger);
+
+export default function FinalCTA() {
+    const container = useRef(null);
+
+    useGSAP(() => {
+        const tl = gsap.timeline({
+            scrollTrigger: { trigger: container.current, start: "top 80%", toggleActions: "play none none none" }
+        });
+        tl.from(".cta-element", { opacity: 0, y: 50, stagger: 0.3, duration: 1, ease: 'power3.out' });
+    }, { scope: container });
+
+    return(
+        <section ref={container} className="relative py-28 sm:py-32 bg-gray-800 text-white text-center overflow-hidden">
+            <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('/images/tlo-cta.jpg')" }}></div>
+            <div className="absolute inset-0 bg-black/60"></div>
+            <div className="relative z-10 p-4">
+                <h2 className="cta-element font-serif text-4xl md:text-5xl font-bold mb-8">Spełniamy Twoje Marzenia</h2>
+                <div className="cta-element flex flex-col sm:flex-row gap-4 justify-center">
+                    <Link href="/kontakt" className="bg-brand-500 hover:bg-white hover:text-brand-500 text-white px-8 py-3 rounded-md transition-colors duration-300 font-semibold">
+                        Umów Konsultację
+                    </Link>
+                    <Link href="/galeria" className="border-2 border-white text-white px-8 py-3 rounded-md font-semibold hover:bg-white hover:text-black transition-colors duration-300">
+                        Zobacz Realizacje
+                    </Link>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+
+
+// components/Philosophy.js
+"use client";
+
+import Image from 'next/image';
+import { useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+
+gsap.registerPlugin(ScrollTrigger);
+
+export default function Philosophy() {
+    const container = useRef(null);
+    useGSAP(() => {
+        const trigger = { trigger: container.current, start: "top 80%", toggleActions: "play none none none" };
+        gsap.from(".text-col", { scrollTrigger: trigger, x: -100, opacity: 0, duration: 1, ease: 'power3.out' });
+        gsap.from(".image-col", { scrollTrigger: trigger, x: 100, opacity: 0, duration: 1, ease: 'power3.out' });
+    }, { scope: container });
+
+    return(
+        <section ref={container} className="py-20 sm:py-28 bg-brand-50 overflow-hidden min-h-screen">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div className="text-col lg:pr-12">
+                        <h2 className="font-serif text-4xl font-bold text-gray-900">Nasza Filozofia</h2>
+                        <p className="mt-6 text-lg text-gray-600 leading-relaxed">W Kreacji Niezapomnianych Zaręczyn i Ślubów wierzymy, że każda para zasługuje na wydarzenie tak unikalne, jak ich miłość. Naszą misją jest zdejmowanie z Waszych barków stresu związanego z organizacją, abyście mogli w pełni cieszyć się każdym momentem – od pierwszych konsultacji po ostatni taniec.</p>
+                    </div>
+                    <div className="image-col w-full aspect-square relative rounded-lg shadow-xl">
+                        <Image src="/images/onas-fst.jpg" alt="Elegancko udekorowany stolik" layout="fill" objectFit="cover" className="rounded-lg" />
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+
+
+
+// components/Values.js
+"use client";
+
+import { useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+import { HeartIcon, HandThumbUpIcon, ChatBubbleLeftRightIcon } from '@heroicons/react/24/outline';
+
+gsap.registerPlugin(ScrollTrigger);
+
+const values = [
+    { icon: <HeartIcon className="w-7 h-7"/>, title: "Pasja i Zaangażowanie", description: "Każdy projekt traktujemy z sercem, jakby był naszym własnym." },
+    { icon: <HandThumbUpIcon className="w-7 h-7"/>, title: "Jakość i Zaufanie", description: "Współpracujemy tylko ze sprawdzonymi partnerami, gwarantując najwyższy standard." },
+    { icon: <ChatBubbleLeftRightIcon className="w-7 h-7"/>, title: "Otwarta Komunikacja", description: "Jesteśmy Waszym partnerem na każdym etapie, zawsze gotowi do rozmowy i wsparcia." },
+];
+
+export default function Values() {
+    const container = useRef(null);
+    useGSAP(() => {
+        const tl = gsap.timeline({ scrollTrigger: { trigger: container.current, start: "top 80%", toggleActions: "play none none none" }});
+        tl.from(".section-header > *", { opacity: 0, y: 40, stagger: 0.2, duration: 0.8 })
+            .from(".value-card", { opacity: 0, y: 50, stagger: 0.2, duration: 0.6 }, "-=0.5");
+    }, { scope: container });
+
+    return(
+        <section ref={container} className="py-20 sm:py-28 bg-brand-600 text-white">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="section-header text-center mb-16">
+                    <h2 className="font-serif text-4xl font-bold">Nasze Wartości</h2>
+                    <p className="max-w-2xl mx-auto text-brand-100 mt-4">Fundamenty naszej doskonałości opierają się na trzech kluczowych filarach.</p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    {values.map(item => (
+                        <div key={item.title} className="value-card bg-white/10 p-8 rounded-lg text-center backdrop-blur-sm">
+                            <div className="mx-auto w-14 h-14 mb-5 rounded-full bg-white/20 text-white flex items-center justify-center">
+                                {item.icon}
+                            </div>
+                            <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
+                            <p className="text-brand-200">{item.description}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+}

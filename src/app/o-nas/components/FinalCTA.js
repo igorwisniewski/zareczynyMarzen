@@ -11,7 +11,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function FinalCTA() {
     const container = useRef(null);
-
     useGSAP(() => {
         const tl = gsap.timeline({
             scrollTrigger: { trigger: container.current, start: "top 80%", toggleActions: "play none none none" }
@@ -29,7 +28,8 @@ export default function FinalCTA() {
                     <Link href="/kontakt" className="bg-brand-500 hover:bg-white hover:text-brand-500 text-white px-8 py-3 rounded-md transition-colors duration-300 font-semibold">
                         Umów Konsultację
                     </Link>
-                    <Link href="/galeria" className="border-2 border-white text-white px-8 py-3 rounded-md font-semibold hover:bg-white hover:text-black transition-colors duration-300">
+                    {/* ZMIANA: Drugi przycisk w kolorze różowym */}
+                    <Link href="/galeria" className="border-2 border-rose-300 text-white px-8 py-3 rounded-md font-semibold hover:bg-rose-300 hover:text-black transition-colors duration-300">
                         Zobacz Realizacje
                     </Link>
                 </div>

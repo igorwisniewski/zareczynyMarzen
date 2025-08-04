@@ -19,10 +19,8 @@ export default function Differentiators() {
     const container = useRef(null);
     useGSAP(() => {
         const trigger = { trigger: container.current, start: "top 80%", toggleActions: "play none none none" };
-
         gsap.from(".image-col", { scrollTrigger: trigger, xPercent: -100, opacity: 0, duration: 1, ease: 'power3.out' });
         gsap.from(".text-col", { scrollTrigger: trigger, xPercent: 100, opacity: 0, duration: 1, ease: 'power3.out' });
-
     }, { scope: container });
 
     return(
@@ -38,7 +36,8 @@ export default function Differentiators() {
                         <ul className="mt-8 space-y-6">
                             {points.map(point => (
                                 <li key={point.num} className="flex items-start gap-4">
-                                    <div className="flex-shrink-0 w-10 h-10 bg-brand-100 text-brand-600 rounded-full flex items-center justify-center font-bold font-serif text-lg">
+                                    {/* ZMIANA: Użycie koloru różowego dla numerków */}
+                                    <div className="flex-shrink-0 w-10 h-10 bg-rose-100 text-rose-600 rounded-full flex items-center justify-center font-bold font-serif text-lg">
                                         {point.num}
                                     </div>
                                     <p className="text-gray-700 text-lg pt-1.5">{point.text}</p>

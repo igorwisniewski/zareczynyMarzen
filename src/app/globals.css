@@ -16,6 +16,18 @@
   --color-brand-800: #7d5b3a;
   --color-brand-900: #654a32;
   --color-brand-950: #3e2c1d;
+
+  --color-rose-50: #fdf7f8;
+  --color-rose-100: #faefef;
+  --color-rose-200: #f3dfe2;
+  --color-rose-300: #ebcfd4;
+  --color-rose-400: #e0b1ba;
+  --color-rose-500: #d497a4;
+  --color-rose-600: #c48290;
+  --color-rose-700: #a96976;
+  --color-rose-800: #8b5560;
+  --color-rose-900: #71454f;
+  --color-rose-950: #4a2c33;
 }
 
 :root {
