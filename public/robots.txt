@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://zareczynymarzen.pl
+
+# Sitemaps
+Sitemap: https://zareczynymarzen.pl/sitemap.xml

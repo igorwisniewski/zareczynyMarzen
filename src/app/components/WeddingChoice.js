@@ -90,15 +90,18 @@ export default function WeddingChoice() {
             className="relative flex flex-col md:flex-row w-screen min-h-screen md:h-screen max-h-[90vh] lg:max-h-screen bg-black font-serif overflow-hidden"
         >
 
+
             {/* --- Komponenty w kolejności dla widoku mobilnego --- */}
 
             {/* 1. Panel górny (Ślub) */}
-            <Link href="/slub-marzen" className="panel-left relative w-full h-[50vh] md:w-1/2 md:h-full flex items-center justify-center cursor-pointer overflow-hidden">
-                <Image src={weddingImageUrl} alt="Para młoda" fill className="bg-image object-cover z-0" priority />
+            <Link href="/slub-marzen"
+                  className="panel-left relative w-full h-[50vh] md:w-1/2 md:h-full flex items-center justify-center cursor-pointer overflow-hidden">
+                <Image src={weddingImageUrl} alt="Para młoda" fill className="bg-image object-cover z-0" priority/>
                 <div className="absolute inset-0 bg-black/40 z-10"></div>
                 <div className="relative z-20 text-center text-white p-8">
                     {/* Nagłówek widoczny na mobile, na desktopie kontrolowany przez GSAP */}
-                    <h2 className="main-heading text-4xl md:text-5xl font-bold uppercase tracking-widest opacity-100 md:opacity-0">Ślub Marzeń</h2>
+                    <h2 className="main-heading text-4xl md:text-5xl font-bold uppercase tracking-widest opacity-100 md:opacity-0">Ślub
+                        Marzeń</h2>
                 </div>
             </Link>
 
@@ -108,18 +111,22 @@ export default function WeddingChoice() {
             </div>
 
             {/* 3. Panel dolny (Zaręczyny) */}
-            <Link href="/zareczyny-marzen" className="panel-right relative w-full h-[50vh] md:w-1/2 md:h-full flex items-center justify-center cursor-pointer overflow-hidden">
-                <Image src={engagementImageUrl} alt="Zaręczyny" fill className="bg-image object-cover z-0" priority />
+            <Link href="/zareczyny-marzen"
+                  className="panel-right relative w-full h-[50vh] md:w-1/2 md:h-full flex items-center justify-center cursor-pointer overflow-hidden">
+                <Image src={engagementImageUrl} alt="Zaręczyny" fill className="bg-image object-cover z-0" priority/>
                 <div className="absolute inset-0 bg-black/40 z-10"></div>
                 <div className="relative z-20 text-center text-white p-8">
                     {/* Nagłówek widoczny na mobile, na desktopie kontrolowany przez GSAP */}
-                    <h2 className="main-heading text-4xl md:text-5xl font-bold uppercase tracking-widest opacity-100 md:opacity-0">Zaręczyny Marzeń</h2>
+                    <h2 className="main-heading text-4xl md:text-5xl font-bold uppercase tracking-widest opacity-100 md:opacity-0">Zaręczyny
+                        Marzeń</h2>
                 </div>
             </Link>
 
             {/* 4. Centralne koło (tylko na desktopie) */}
-            <div className="center-circle absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 pointer-events-none hidden md:flex items-center justify-center">
-                <div className="flex items-center justify-center w-72 h-72 rounded-full border-2 border-amber-300 text-white bg-black/70">
+            <div
+                className="center-circle absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 pointer-events-none hidden md:flex items-center justify-center">
+                <div
+                    className="flex items-center justify-center w-72 h-72 rounded-full border-2 border-amber-300 text-white bg-black/70">
                     <span className="text-3xl text-center">Które Marzenie Spełnimy?</span>
                 </div>
             </div>
