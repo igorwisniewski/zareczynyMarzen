@@ -20,9 +20,6 @@ const allImages = [
     { src: '/images/gallery/galleria-7.jpg', alt: 'Bukiet ślubny panny młodej' },
     { src: '/images/gallery/galleria-8.jpg', alt: 'Para młoda przy ołtarzu' },
     { src: '/images/gallery/galleria-9.jpg', alt: 'Tort weselny z dekoracjami' },
-    { src: '/images/gallery/galleria-10.jpg', alt: 'Goście wznoszący toast' },
-    { src: '/images/gallery/galleria-11.jpg', alt: 'Samochód ślubny z ozdobami' },
-    { src: '/images/gallery/galleria-12.jpg', alt: 'Pierwszy taniec pary młodej' },
     { src: '/images/zare/zare-1.jpg', alt: 'Dekoracja stołu weselnego' },
     { src: '/images/zare/zare-2.jpg', alt: 'Para młoda podczas sesji' },
     { src: '/images/zare/zare-3.jpg', alt: 'Obrączki ślubne na kwiatach' },
@@ -31,10 +28,7 @@ const allImages = [
     { src: '/images/zare/zare-6.jpg', alt: 'Pan młody poprawiający muszkę' },
     { src: '/images/zare/zare-7.jpg', alt: 'Bukiet ślubny panny młodej' },
     { src: '/images/zare/zare-8.jpg', alt: 'Para młoda przy ołtarzu' },
-    { src: '/images/zare/zare-9.jpg', alt: 'Tort weselny z dekoracjami' },
-    { src: '/images/zare/zare-10.jpg', alt: 'Goście wznoszący toast' },
-    { src: '/images/zare/zare-11.jpg', alt: 'Samochód ślubny z ozdobami' },
-    { src: '/images/zare/zare-12.jpg', alt: 'Pierwszy taniec pary młodej' },
+
 ];
 
 const IMAGES_PER_PAGE = 6;

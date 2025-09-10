@@ -6,7 +6,7 @@ import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
 import Link from "next/link";
 
-const engagementImageUrl = '/images/ErangmentChoice.png';
+const engagementImageUrl = '/images/ErangmentChoice.jpg';
 const weddingImageUrl = '/images/Weddingchoice.jpg';
 
 export default function WeddingChoice() {
