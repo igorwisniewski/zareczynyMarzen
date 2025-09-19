@@ -28,34 +28,13 @@ export default function ContactFormMap() {
         });
     }, { scope: container });
 
-    // 1. Definiujemy funkcję obsługującą wysłanie formularza
-    const handleSubmit = (event) => {
-        // Zatrzymujemy domyślną akcję wysyłania formularza
-        event.preventDefault();
-
-        // UWAGA: Wklej tutaj swój unikalny identyfikator konwersji z Google Ads
-        const conversionId = 'AW-17526203888/Twoj_Identyfikator_Konwersji';
-
-        // Sprawdzamy, czy funkcja gtag istnieje, i wysyłamy zdarzenie konwersji
-        if (typeof window.gtag === 'function') {
-            window.gtag('event', 'conversion', {
-                'send_to': conversionId,
-            });
-        }
-
-        // Odczekujemy 200 milisekund, aby dać czas na zarejestrowanie zdarzenia
-        setTimeout(() => {
-            // Po odczekaniu, programowo wysyłamy formularz
-            event.target.submit();
-        }, 200);
-    };
 
     return (
         <section ref={container} className="relative py-20 sm:py-28 w-full min-h-[80vh] flex items-center justify-center">
             {/* Mapa jako tło */}
             <div className="absolute inset-0 z-0">
                 <iframe
-                    src="http://googleusercontent.com/maps.google.com/3"
+                    src="https://googleusercontent.com/maps.google.com/3"
                     className="w-full h-full"
                     style={{ border: 0 }}
                     allowFullScreen=""
@@ -74,7 +53,6 @@ export default function ContactFormMap() {
                         action="https://formspree.io/f/movwblao"
                         method="POST"
                         className="space-y-6"
-                        onSubmit={handleSubmit}
                     >
                         {/* ... wszystkie pola formularza bez zmian ... */}
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
