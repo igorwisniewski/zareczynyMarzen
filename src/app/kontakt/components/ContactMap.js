@@ -65,7 +65,7 @@ export default function ContactFormMap() {
             </div>
 
             {/* Formularz na wierzchu */}
-            <div className="contact-form-wrapper relative z-10 w-full max-w-3xl mx-auto px-4 pointer-events-none">
+             <div className="contact-form-wrapper relative z-10 w-full max-w-3xl mx-auto px-4 pointer-events-none">
                 <div className="bg-white/95 backdrop-blur-md p-8 lg:p-12 border-2 border-brand-300 rounded-lg shadow-2xl pointer-events-auto">
                     <h3 className="font-serif text-3xl font-bold mb-6 text-center text-gray-900">Zapytaj o termin</h3>
 
